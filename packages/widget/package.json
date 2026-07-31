@@ -1,0 +1,31 @@
+{
+  "name": "@soroverify/widget",
+  "version": "0.1.0",
+  "description": "Embeddable <soroverify-badge> custom element and thin React wrapper for displaying a contract's source-verification status.",
+  "type": "module",
+  "main": "./dist/element.js",
+  "module": "./dist/element.js",
+  "types": "./dist/element.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/element.d.ts",
+      "import": "./dist/element.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run"
+  },
+  "dependencies": {
+    "@soroverify/sdk": "workspace:*"
+  },
+  "peerDependencies": {
+    "react": ">=18"
+  }
+}

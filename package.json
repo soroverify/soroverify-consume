@@ -1,0 +1,20 @@
+{
+  "name": "soroverify-consume",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Read-only integration layer for soroverify-verifier: an SDK, an embeddable verification badge widget, and a reference consumer page.",
+  "type": "module",
+  "packageManager": "pnpm@11.18.0",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "build": "pnpm -r --filter \"./packages/*\" build",
+    "typecheck": "pnpm -r --filter \"./packages/*\" typecheck",
+    "test": "pnpm -r --filter \"./packages/*\" test"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "typescript": "~5.9.3"
+  }
+}
