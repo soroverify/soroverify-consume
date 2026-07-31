@@ -1,4 +1,10 @@
 packages:
   - packages/*
+  - examples/*
+allowBuilds:
+  # sharp (pulled in by Next.js) compiles its native module in a postinstall
+  # script; allow it so the build gate passes non-interactively.
+  sharp: true
 minimumReleaseAgeExclude:
   - '@types/react@19.2.18'
+  - '@types/react-dom@19.2.4'
