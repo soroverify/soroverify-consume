@@ -12,7 +12,9 @@
       "import": "./dist/index.js"
     }
   },
-  "files": ["dist"],
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
@@ -20,5 +22,8 @@
   },
   "engines": {
     "node": ">=22"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "^16.2.0"
   }
 }
