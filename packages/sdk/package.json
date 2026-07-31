@@ -1,7 +1,7 @@
 {
   "name": "@soroverify/sdk",
   "version": "0.1.0",
-  "description": "Read-only client for soroverify-verifier's public API: verification lookup, contract-to-wasm resolution via Soroban RPC, and multi-verifier trust resolution.",
+  "description": "Read-only client for soroverify-verifier's public API: verification lookup, contract resolution, and multi-verifier trust resolution.",
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -16,14 +16,11 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "build": "tsc -p tsconfig.build.json",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "test": "vitest run"
   },
   "engines": {
     "node": ">=22"
-  },
-  "dependencies": {
-    "@stellar/stellar-sdk": "^16.2.0"
   }
 }

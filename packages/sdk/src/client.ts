@@ -5,8 +5,9 @@
  * or writes anything. Verification records are self-authenticating (each
  * carries a public key and signature), so no credentials are ever needed.
  *
- * The read endpoint implemented by current soroverify-verifier deployments is
- * GET /verifications/:wasmHash, which returns an envelope of signed results:
+ * The read endpoints served by soroverify-verifier deployments are GET
+ * /verifications/:wasmHash and GET /verifications/by-contract/:contractId;
+ * both return the same envelope of signed results:
  *
  *   { wasmHash, status, results: SignedVerificationRecord[], sources: Source[] }
  *
@@ -166,13 +167,15 @@ export async function getVerifications(
 
 /**
  * Look up verification results for a contract ID via the verifier's
- * by-contract endpoint.
+ * by-contract endpoint. The verifier resolves the deployed wasm hash
+ * server-side and returns the same envelope as GET /verifications/:wasmHash,
+ * so no Soroban RPC client is needed.
  *
- * Note: current soroverify-verifier deployments do not expose this route yet
- * (they answer 404), so against those deployments this throws
- * SoroverifyApiError with status 404. Consumers that only have a contract ID
- * should prefer resolveContract() from resolve.ts, which resolves the wasm
- * hash via Soroban RPC and then calls getVerifications().
+ * Non-2xx responses throw SoroverifyApiError with the HTTP status, matching
+ * getVerifications(): 400 validation_failed for a malformed contract ID, 404
+ * for a well-formed ID with no deployed contract, and 502 rpc_error for an
+ * upstream RPC failure. Consumers that only have a contract ID should use
+ * resolveContract() from resolve.ts.
  */
 export async function getVerificationsByContract(
   apiBaseUrl: string,
