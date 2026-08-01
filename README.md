@@ -1,7 +1,6 @@
 ![Soroverify](assets/soroverify-consume.svg)
 
 [![CI](https://github.com/soroverify/soroverify-consume/actions/workflows/ci.yml/badge.svg)](https://github.com/soroverify/soroverify-consume/actions/workflows/ci.yml)
-
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
 **Status:** working implementation, 17 tests passing, CI configured to run
@@ -15,6 +14,12 @@ status without running their own rebuild pipeline. It only reads: the SDK
 issues GET requests to the verifier's public API and never signs or writes
 anything; the widget renders exactly one of verified, mismatch, or a neutral
 state, and never fabricates a result.
+
+**Related work.** This is the consumer-facing half of a two-repo project;
+[soroverify-verifier](https://github.com/soroverify/soroverify-verifier) does
+the actual rebuild-and-compare work this SDK and widget read from. For how
+that differs from StellarExpert's SEP-55 attestation and SoroSeal's
+deploy-time certification, see the verifier repo's README.
 
 ## Repository layout
 
