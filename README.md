@@ -1,4 +1,4 @@
-# Soroverify consume
+![Soroverify](assets/soroverify-consume.svg)
 
 [![CI](https://github.com/soroverify/soroverify-consume/actions/workflows/ci.yml/badge.svg)](https://github.com/soroverify/soroverify-consume/actions/workflows/ci.yml)
 
