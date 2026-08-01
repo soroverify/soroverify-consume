@@ -1,0 +1,47 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  build-and-test:
+    name: Build and test
+    runs-on: ubuntu-latest
+    # A hung step (e.g. a stuck test) must fail fast instead of burning up to
+    # GitHub's 6-hour default job timeout.
+    timeout-minutes: 10
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - name: Set up pnpm
+        # version matches the repo's pinned packageManager (pnpm@11.18.0).
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+        with:
+          version: 11.18.0
+      - name: Set up Node.js 22 LTS
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: 22
+          cache: pnpm
+      - name: Install dependencies
+        run: pnpm install
+      # The build runs package-by-package in dependency order, one step per
+      # package, so a failure is clearly attributable. @soroverify/widget
+      # imports from @soroverify/sdk's built dist/, and the reference
+      # integration depends on both, so sdk -> widget -> reference-integration
+      # is the only order that works on a fresh clone (no dist/ yet). See the
+      # README "Build order matters" section. Any non-zero exit fails the job
+      # (no continue-on-error).
+      - name: Build @soroverify/sdk
+        run: pnpm --filter @soroverify/sdk build
+      - name: Build @soroverify/widget
+        run: pnpm --filter @soroverify/widget build
+      - name: Build @soroverify/reference-integration
+        run: pnpm --filter @soroverify/reference-integration build
+      # No lint gate: this repo has no lint script configured yet (tracked
+      # separately); the gate is build and test only.
+      - name: Test
+        run: pnpm test
