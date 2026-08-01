@@ -217,3 +217,18 @@ pointed at a testnet RPC endpoint (e.g. `STELLAR_RPC_URL=https://soroban-testnet
 - [CONTRIBUTING.md](CONTRIBUTING.md) — local dev setup, the pre-PR gate, and git workflow.
 - [SECURITY.md](SECURITY.md) — responsible disclosure and scope.
 - [LICENSE](LICENSE) — Apache License 2.0.
+
+
+## Maintainers
+
+| Name | GitHub |
+|---|---|
+| Hollujay | [@Hollujay](https://github.com/Hollujay) |
+| emarkees | [@emarkees](https://github.com/emarkees) |
+
+
+## Contributors
+
+<a href="https://github.com/soroverify/soroverify-consume/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=soroverify/soroverify-consume" />
+</a>
