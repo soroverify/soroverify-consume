@@ -65,6 +65,29 @@ button[type='submit']:hover {
   margin-bottom: 16px;
 }
 
+/* Client-side loading placeholder for the dynamically loaded badge —
+   mirrors the widget's neutral pill so the layout doesn't jump. */
+.badge-loading {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: #f9fafb;
+  color: #6b7280;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.badge-loading-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6b7280;
+  flex: none;
+}
+
 .muted {
   color: #6b7280;
   font-size: 0.9rem;
