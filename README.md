@@ -4,6 +4,9 @@
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
 
+**Status:** working implementation, 17 tests passing, CI configured to run
+build order (sdk → widget → reference integration) plus tests.
+
 soroverify-consume is the read-only integration layer for
 [soroverify-verifier](https://github.com/soroverify/soroverify-verifier): an
 SDK, an embeddable verification-badge widget, and a reference integration that
@@ -183,8 +186,7 @@ for a failed lookup.
 
 The example is a real consumer: it calls the verifier's public read endpoints
 cross-origin from the browser. **It requires a running soroverify-verifier
-instance** — local (`npm run dev` in the verifier repo, which serves
-`http://localhost:8080`) or deployed — reachable at `SOROVERIFY_API_URL` /
+instance** — local (follow the [verifier repo's Quick start](https://github.com/soroverify/soroverify-verifier#quick-start); a bare `npm run dev` fails because the verifier does not auto-load `.env` — run `node --env-file=.env node_modules/.bin/tsx watch src/index.ts` instead; the service serves `http://localhost:8080` by default) or deployed — reachable at `SOROVERIFY_API_URL` /
 `NEXT_PUBLIC_SOROVERIFY_API_URL`. Without a reachable verifier the badge
 renders neutral and the detail panel says the contract could not be resolved.
 
@@ -200,8 +202,15 @@ pnpm --filter @soroverify/reference-integration dev
 ```
 
 Then open http://localhost:3000, paste a contract ID (e.g.
-`CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABSC4`), and open the
+`CDNA2XPXQ5XEVG4J5S4CFD5XJ7RI7O5G3HBU3TALYXUMVA3KVMFW3RCE`), and open the
 contract page. The badge appears next to the contract ID.
+
+That contract is a real hello-world contract deployed to Stellar testnet (wasm
+hash `ae93c5657badf39e151ce54a5bd163127c6590785d40f0d6f28c25d45b37af9e`). No
+source has been submitted for it yet, so the verifier returns `unverified` and
+the badge correctly renders its neutral state — a genuine working first
+experience rather than an error. For it to resolve, the verifier must be
+pointed at a testnet RPC endpoint (e.g. `STELLAR_RPC_URL=https://soroban-testnet.stellar.org`).
 
 ## Contributing and security
 
