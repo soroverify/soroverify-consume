@@ -1,13 +1,13 @@
 # Soroverify reference integration
 
 A small, runnable [Next.js](https://nextjs.org) app that demonstrates the
-SDK + widget working wired into a realistic consumer — a Stellar-Lab-style
+SDK + widget working wired into a realistic consumer, a Stellar-Lab-style
 contract detail page with the `<soroverify-badge>` verification indicator
 embedded where a block explorer or Stellar Lab would put it.
 
 This is one of the RFP's explicitly required deliverables: proof that
 `@soroverify/sdk` and `@soroverify/widget` work in a real page, calling the
-real verifier cross-origin from the browser — not mocked, not reimplemented.
+real verifier cross-origin from the browser, not mocked, not reimplemented.
 
 ## What it demonstrates
 
@@ -23,7 +23,7 @@ real verifier cross-origin from the browser — not mocked, not reimplemented.
   - A clearly nonexistent contract renders **neutral** (unresolvable by the
     verifier).
   - A well-formed but undeployed contract ID renders **neutral** and the
-    detail panel says the contract *could not be resolved* — it never claims
+    detail panel says the contract *could not be resolved*: it never claims
     "unverified" (the "unverified" label is reserved for a verifier response
     with status `unverified`, i.e. a contract whose wasm hash has no results).
   - **No real verified or mismatched contract exists yet** in the current
@@ -34,7 +34,7 @@ real verifier cross-origin from the browser — not mocked, not reimplemented.
 ## Running it
 
 Prerequisites: Node ≥ 22, pnpm, and a running soroverify-verifier at
-`http://localhost:8080` (see the soroverify-verifier repo — `npm run dev`).
+`http://localhost:8080` (see the soroverify-verifier repo: `npm run dev`).
 
 ```sh
 # from the repo root
