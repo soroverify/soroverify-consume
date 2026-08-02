@@ -3,7 +3,7 @@
 ## Reporting a vulnerability
 
 There is **no dedicated security contact set up for this project yet**. Until
-one exists, use the placeholder below — do not assume it is a real address:
+one exists, use the placeholder below. Do not assume it is a real address:
 
     [SECURITY CONTACT EMAIL]
 
