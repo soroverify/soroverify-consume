@@ -77,7 +77,7 @@ pnpm --filter @soroverify/widget build  # requires @soroverify/sdk's dist
 
 These are the variables the shipped code actually reads. The original env
 spec listed `SOROBAN_RPC_URL` and `NETWORK_PASSPHRASE` for client-side RPC
-resolution; nothing in this repo reads them anymore — contract resolution
+resolution; nothing in this repo reads them anymore: contract resolution
 moved server-side to the verifier's `GET /verifications/by-contract/:contractId`
 endpoint, so the SDK has no Soroban RPC client. Do not set them expecting
 them to be used.
@@ -132,7 +132,7 @@ import { SoroverifyBadge } from '@soroverify/widget/react';
 `element.ts` defines a class that extends `HTMLElement`, a browser-only
 global. Importing the widget during server-side rendering throws
 `ReferenceError: HTMLElement is not defined` and crashes the render. This is
-not a tip — the repo's own reference integration hit this exact bug and fixed
+not a tip: the repo's own reference integration hit this exact bug and fixed
 it the same way. Any Next.js or other SSR consumer must load the widget with
 `ssr: false`, e.g. via `next/dynamic`:
 
@@ -182,7 +182,7 @@ prop). Only their records count toward the verdict; everyone else's records
 are still shown.
 
 **Honest degradation is guaranteed:** an unreachable API, a timeout, a
-malformed contract ID, or an ambiguous result always renders a neutral state —
+malformed contract ID, or an ambiguous result always renders a neutral state,
 never a fabricated `verified`. The `unverified` label is reserved for a
 verifier response with status `unverified` (a wasm hash with no results), not
 for a failed lookup.
@@ -191,7 +191,7 @@ for a failed lookup.
 
 The example is a real consumer: it calls the verifier's public read endpoints
 cross-origin from the browser. **It requires a running soroverify-verifier
-instance** — local (follow the [verifier repo's Quick start](https://github.com/soroverify/soroverify-verifier#quick-start); a bare `npm run dev` fails because the verifier does not auto-load `.env` — run `node --env-file=.env node_modules/.bin/tsx watch src/index.ts` instead; the service serves `http://localhost:8080` by default) or deployed — reachable at `SOROVERIFY_API_URL` /
+instance**, local (follow the [verifier repo's Quick start](https://github.com/soroverify/soroverify-verifier#quick-start); a bare `npm run dev` fails because the verifier does not auto-load `.env`: run `node --env-file=.env node_modules/.bin/tsx watch src/index.ts` instead; the service serves `http://localhost:8080` by default) or deployed, reachable at `SOROVERIFY_API_URL` /
 `NEXT_PUBLIC_SOROVERIFY_API_URL`. Without a reachable verifier the badge
 renders neutral and the detail panel says the contract could not be resolved.
 
@@ -213,15 +213,15 @@ contract page. The badge appears next to the contract ID.
 That contract is a real hello-world contract deployed to Stellar testnet (wasm
 hash `ae93c5657badf39e151ce54a5bd163127c6590785d40f0d6f28c25d45b37af9e`). No
 source has been submitted for it yet, so the verifier returns `unverified` and
-the badge correctly renders its neutral state — a genuine working first
+the badge correctly renders its neutral state, a genuine working first
 experience rather than an error. For it to resolve, the verifier must be
 pointed at a testnet RPC endpoint (e.g. `STELLAR_RPC_URL=https://soroban-testnet.stellar.org`).
 
 ## Contributing and security
 
-- [CONTRIBUTING.md](CONTRIBUTING.md) — local dev setup, the pre-PR gate, and git workflow.
-- [SECURITY.md](SECURITY.md) — responsible disclosure and scope.
-- [LICENSE](LICENSE) — Apache License 2.0.
+- [CONTRIBUTING.md](CONTRIBUTING.md): local dev setup, the pre-PR gate, and git workflow.
+- [SECURITY.md](SECURITY.md): responsible disclosure and scope.
+- [LICENSE](LICENSE): Apache License 2.0.
 
 
 ## Maintainers
